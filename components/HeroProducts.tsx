@@ -7,22 +7,22 @@ const VIALS = [
   {
     src: "/products/glutathione.png",
     alt: "Carbon Labs Glutathione vial",
-    wrap: "z-20 -mr-5 sm:-mr-7 md:-mr-12",
-    img: "h-40 origin-bottom -rotate-[10deg] sm:h-56 md:h-[400px]",
+    wrap: "z-20 -mr-12 sm:-mr-20 md:-mr-32",
+    img: "h-44 origin-bottom -rotate-[12deg] translate-y-2 sm:h-60 md:h-[430px]",
     floatDelay: 0,
   },
   {
     src: "/products/igf-1-lr3.png",
     alt: "Carbon Labs IGF-1 LR3 vial",
     wrap: "z-30",
-    img: "h-52 sm:h-72 md:h-[520px]",
+    img: "h-56 sm:h-80 md:h-[540px]",
     floatDelay: 0.6,
   },
   {
     src: "/products/glp-3rt.png",
     alt: "Carbon Labs GLP-3RT vial",
-    wrap: "z-20 -ml-5 sm:-ml-7 md:-ml-12",
-    img: "h-40 origin-bottom rotate-[10deg] sm:h-56 md:h-[400px]",
+    wrap: "z-20 -ml-12 sm:-ml-20 md:-ml-32",
+    img: "h-44 origin-bottom rotate-[12deg] translate-y-2 sm:h-60 md:h-[430px]",
     floatDelay: 1.2,
   },
 ];
