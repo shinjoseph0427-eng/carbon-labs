@@ -67,19 +67,22 @@ export default function BuyBox({ product }: { product: Product }) {
 
       <ul className="mt-5 space-y-2 border-t pt-5 text-sm text-ink-soft">
         <li className="flex items-center gap-2">
-          <span className="text-accent">✓</span> {product.purity} identity purity
+          <span className="text-accent">✓</span> {product.purity} purity ·{" "}
+          {product.productType}
         </li>
         <li className="flex items-center gap-2">
-          <span className="text-accent">✓</span> Certificate of Analysis included
+          <span className="text-accent">✓</span> Third-party tested · COA when
+          completed
         </li>
         <li className="flex items-center gap-2">
-          <span className="text-accent">✓</span> Free shipment protection over $150
+          <span className="text-accent">✓</span> Lyophilized powder · all sales
+          final
         </li>
       </ul>
 
       <p className="mt-5 rounded-lg bg-bg p-3 text-xs leading-relaxed text-muted">
-        For laboratory research use only. Not for human or veterinary use. Not
-        evaluated by the U.S. FDA.
+        For laboratory research use only. Not for human or veterinary
+        consumption. Not for clinical, therapeutic, or diagnostic use.
       </p>
     </div>
   );

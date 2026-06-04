@@ -1,20 +1,45 @@
 @import "tailwindcss";
 
-/* ============ Design tokens ============ */
+/* ============ Design tokens (Carbon Labs spec) ============ */
 :root {
-  --bg: #fbfbf8;
+  --black: #0a0a0a;
+  --white: #ffffff;
+  --gray-50: #f8f8f8;
+  --gray-100: #f0f0f0;
+  --gray-200: #e0e0e0;
+  --gray-400: #999999;
+  --gray-600: #555555;
+
+  /* product card pastels */
+  --card-lavender: #e5e0f5;
+  --card-mint: #d5ead5;
+  --card-ice: #c8dae8;
+  --card-sand: #eae0d5;
+  --card-sage: #d5e8e0;
+  --card-mauve: #e5d5ea;
+
+  /* semantic aliases (kept so existing pages stay coherent) */
+  --bg: #ffffff;
   --surface: #ffffff;
-  --ink: #14171a;
-  --ink-soft: #4b5158;
-  --muted: #8a9099;
-  --line: #e7e7e0;
-  --accent: #1f6f5c;        /* clinical sage-emerald */
-  --accent-deep: #14503f;
-  --accent-soft: #e8f1ed;
-  --amber: #c98a2b;
+  --ink: #0a0a0a;
+  --ink-soft: #555555;
+  --muted: #999999;
+  --line: #e0e0e0;
+  --accent: #0a0a0a;
+  --accent-deep: #0a0a0a;
+  --accent-soft: #d5ead5;
 }
 
 @theme inline {
+  --color-black: var(--black);
+  --color-white: var(--white);
+  --color-card-lavender: var(--card-lavender);
+  --color-card-mint: var(--card-mint);
+  --color-card-ice: var(--card-ice);
+  --color-card-sand: var(--card-sand);
+  --color-card-sage: var(--card-sage);
+  --color-card-mauve: var(--card-mauve);
+
   --color-bg: var(--bg);
   --color-surface: var(--surface);
   --color-ink: var(--ink);
@@ -24,10 +49,9 @@
   --color-accent: var(--accent);
   --color-accent-deep: var(--accent-deep);
   --color-accent-soft: var(--accent-soft);
-  --color-amber: var(--amber);
 
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-space);
+  --font-sans: var(--font-manrope);
+  --font-display: var(--font-syne);
   --font-mono: var(--font-mono-jb);
 }
 
@@ -43,52 +67,85 @@ html {
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-manrope), system-ui, sans-serif;
 }
 
 ::selection {
-  background: var(--accent);
+  background: var(--black);
   color: #fff;
 }
 
 /* ============ Utilities ============ */
-.font-display { font-family: var(--font-display), system-ui, sans-serif; }
-.font-mono { font-family: var(--font-mono-jb), ui-monospace, monospace; }
+.font-display {
+  font-family: var(--font-syne), system-ui, sans-serif;
+}
+.font-mono {
+  font-family: var(--font-mono-jb), ui-monospace, monospace;
+}
 
 .eyebrow {
   font-family: var(--font-mono-jb), monospace;
   font-size: 0.7rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--gray-400);
 }
 
-.container-x { width: 100%; max-width: 1200px; margin-inline: auto; padding-inline: 1.5rem; }
+.container-x {
+  width: 100%;
+  max-width: 1440px;
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+@media (min-width: 768px) {
+  .container-x {
+    padding-inline: 3rem;
+  }
+}
 
-/* ============ Marquee ============ */
+/* hide scrollbar for carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ============ Animations ============ */
 @keyframes marquee {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
 }
 .marquee-track {
   display: flex;
   width: max-content;
   animation: marquee 38s linear infinite;
 }
-.marquee-track:hover { animation-play-state: paused; }
-
-/* ============ Fade in on load ============ */
-@keyframes rise {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
+.marquee-track:hover {
+  animation-play-state: paused;
 }
-.rise { animation: rise 0.7s cubic-bezier(0.16, 1, 0.3, 1) both; }
-.rise-1 { animation-delay: 0.05s; }
-.rise-2 { animation-delay: 0.12s; }
-.rise-3 { animation-delay: 0.19s; }
-.rise-4 { animation-delay: 0.26s; }
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
 
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
-  .rise { animation: none; }
+  .marquee-track,
+  .animate-float {
+    animation: none;
+  }
 }

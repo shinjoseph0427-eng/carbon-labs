@@ -1,168 +1,200 @@
+export type Spec = { label: string; value: string };
+
 export type Product = {
   handle: string;
   name: string;
   abbr: string;
-  category: "Single Peptides" | "Blends" | "Accessories";
-  tagline: string;
-  description: string;
+  /** filter group */
+  category: "Peptides" | "Compounds" | "Blends";
+  /** small line under the name, e.g. "Premium Research Peptide" */
+  subtitle: string;
+  productType: string;
   purity: string;
-  sequence?: string;
-  formula?: string;
-  molWeight?: string;
-  cas?: string;
-  /** vial accent color used by the SVG illustration */
+  /** tailwind bg class for the card / image area */
+  card: string;
+  /** vial accent color for the SVG fallback */
   tone: string;
+  /** real product photo (transparent PNG); falls back to Vial SVG when absent */
+  image?: string;
+  description: string;
+  applications: string[];
+  blend?: { items: { name: string; amount: string }[]; total: string };
   variants: { size: string; price: number }[];
   featured?: boolean;
 };
 
+/** Shared boilerplate copy shown on every product page. */
+export const POLICY = {
+  testing:
+    "Carbon Labs products are third-party tested. Certificates of Analysis are available directly on the product listing when completed. If a COA is not currently shown, it is in progress.",
+  storage:
+    "Store lyophilized vials in a cool, dry place away from heat, moisture, and direct sunlight. Refer to the product label for any specific storage instructions.",
+  sales:
+    "All Carbon Labs sales are final. Due to the nature of research products, returns are not accepted once an order has been processed or shipped.",
+  disclaimer:
+    "This product is sold strictly for laboratory, analytical, and scientific research purposes only. It is not intended for human consumption, veterinary use, clinical use, therapeutic use, diagnosis, treatment, cure, or prevention of any disease.",
+};
+
+/** Spec rows are identical except for Product Type — build them per product. */
+export const buildSpecs = (productType: string): Spec[] => [
+  { label: "Product Type", value: productType },
+  { label: "Form", value: "Lyophilized powder" },
+  { label: "Testing", value: "Third-party tested" },
+  { label: "Documentation", value: "COA available when completed" },
+  { label: "Use", value: "Laboratory research only" },
+  { label: "Consumption", value: "Not for human or veterinary consumption" },
+];
+
 export const products: Product[] = [
   {
-    handle: "bpc-157",
-    name: "BPC-157",
-    abbr: "BPC",
-    category: "Single Peptides",
-    tagline: "Body Protection Compound · 5mg",
+    handle: "glp-3-rt",
+    name: "GLP-3 RT",
+    abbr: "GLP",
+    category: "Peptides",
+    subtitle: "Premium Research Peptide",
+    productType: "Research peptide",
+    purity: "99%+",
+    card: "bg-card-ice",
+    tone: "#3b6fb0",
+    image: "/products/glp-3rt.png",
     description:
-      "A synthetic 15–amino-acid peptide derived from a sequence found in gastric juice. Widely studied in vitro for its role in cellular signaling and tissue-model research.",
-    purity: "99.4%",
-    sequence: "Gly-Glu-Pro-Pro-Pro-Gly-Lys-Pro-Ala-Asp-Asp-Ala-Gly-Leu-Val",
-    formula: "C62H98N16O22",
-    molWeight: "1419.5 g/mol",
-    cas: "137525-51-0",
-    tone: "#1f6f5c",
-    variants: [
-      { size: "5mg", price: 42 },
-      { size: "10mg", price: 72 },
+      "GLP-3 RT, also known as Retatrutide, is a research peptide studied for activity across GLP-1, GIP, and glucagon receptor pathways. It is commonly used in laboratory research involving receptor signaling, metabolic pathway models, glucose-related signaling, and energy balance research.",
+    applications: [
+      "GLP-1 receptor signaling",
+      "GIP receptor signaling",
+      "Glucagon receptor pathways",
+      "Metabolic signaling models",
+      "Energy balance research",
+      "Glucose-related pathway analysis",
     ],
+    variants: [{ size: "1mg", price: 76.0 }],
     featured: true,
   },
   {
-    handle: "tb-500",
-    name: "TB-500",
-    abbr: "TB",
-    category: "Single Peptides",
-    tagline: "Thymosin Beta-4 Fragment · 5mg",
-    description:
-      "A synthetic fragment of the naturally occurring protein Thymosin Beta-4. A common reference compound in actin-regulation and cell-migration laboratory models.",
-    purity: "99.1%",
-    sequence: "Ac-SDKP… (Thymosin β4 active region)",
-    formula: "C212H350N56O78S",
-    molWeight: "4963.4 g/mol",
-    cas: "77591-33-4",
-    tone: "#2f6f86",
-    variants: [
-      { size: "5mg", price: 48 },
-      { size: "10mg", price: 84 },
-    ],
-    featured: true,
-  },
-  {
-    handle: "ipamorelin",
-    name: "Ipamorelin",
-    abbr: "IPA",
-    category: "Single Peptides",
-    tagline: "Growth Hormone Secretagogue · 5mg",
-    description:
-      "A selective pentapeptide secretagogue used extensively in receptor-binding and endocrine pathway research models.",
-    purity: "99.6%",
-    sequence: "Aib-His-D-2-Nal-D-Phe-Lys-NH2",
-    formula: "C38H49N9O5",
-    molWeight: "711.9 g/mol",
-    cas: "170851-70-4",
+    handle: "igf-1-lr3",
+    name: "IGF-1 LR3",
+    abbr: "IGF",
+    category: "Peptides",
+    subtitle: "Premium Research Peptide",
+    productType: "Research peptide",
+    purity: "99%+",
+    card: "bg-card-lavender",
     tone: "#6a5acd",
-    variants: [
-      { size: "5mg", price: 39 },
-      { size: "10mg", price: 68 },
+    image: "/products/igf-1-lr3.png",
+    description:
+      "IGF-1 LR3 is a long-chain analog of insulin-like growth factor 1, modified with an extended N-terminal sequence and an arginine substitution. It is studied in laboratory research involving IGF-1 receptor signaling, cellular growth pathways, protein synthesis models, and metabolic activity.",
+    applications: [
+      "IGF-1 receptor signaling",
+      "Cellular growth pathway research",
+      "Protein synthesis models",
+      "Metabolic activity research",
+      "Growth-factor pathway analysis",
     ],
+    variants: [{ size: "1mg", price: 79.99 }],
+    featured: true,
+  },
+  {
+    handle: "ghk-cu",
+    name: "GHK-Cu",
+    abbr: "GHK",
+    category: "Peptides",
+    subtitle: "Premium Research Peptide",
+    productType: "Research peptide",
+    purity: "99%+",
+    card: "bg-card-sage",
+    tone: "#2aa39a",
+    image: "/products/ghk-cu.png",
+    description:
+      "GHK-Cu is a naturally occurring copper-binding tripeptide composed of glycine, histidine, and lysine complexed with copper. It is studied in laboratory and preclinical research for its role in extracellular matrix activity, tissue remodeling models, collagen regulation, and cellular repair signaling.",
+    applications: [
+      "Extracellular matrix signaling",
+      "Collagen regulation pathways",
+      "Tissue remodeling models",
+      "Cellular repair mechanisms",
+      "Copper-peptide interactions",
+    ],
+    variants: [{ size: "100mg", price: 57.0 }],
+    featured: true,
+  },
+  {
+    handle: "glutathione",
+    name: "Glutathione",
+    abbr: "GSH",
+    category: "Compounds",
+    subtitle: "Premium Research Compound",
+    productType: "Research compound",
+    purity: "99%+",
+    card: "bg-card-mint",
+    tone: "#2f8f6f",
+    image: "/products/glutathione.png",
+    description:
+      "Glutathione is a naturally occurring tripeptide composed of glutamine, cysteine, and glycine. It is studied in laboratory research involving redox balance, oxidative stress models, cellular defense pathways, and antioxidant-related activity.",
+    applications: [
+      "Redox balance",
+      "Oxidative stress models",
+      "Cellular defense pathways",
+      "Antioxidant-related activity",
+      "Metabolic and cellular signaling research",
+    ],
+    variants: [{ size: "1500mg", price: 74.0 }],
+    featured: true,
+  },
+  {
+    handle: "klow",
+    name: "KLOW",
+    abbr: "KLOW",
+    category: "Blends",
+    subtitle: "Premium Multi-Peptide Research Blend",
+    productType: "Multi-peptide research blend",
+    purity: "89%",
+    card: "bg-card-mauve",
+    tone: "#a05a9c",
+    image: "/products/klow.png",
+    description:
+      "KLOW is a multi-peptide research blend containing BPC-157, TB-500, KPV, and GHK-Cu. This formulation is designed for laboratory research involving peptide signaling, extracellular matrix activity, tissue remodeling models, inflammatory-response pathways, and cellular repair mechanisms.",
+    blend: {
+      items: [
+        { name: "BPC-157", amount: "10mg" },
+        { name: "TB-500", amount: "10mg" },
+        { name: "KPV", amount: "10mg" },
+        { name: "GHK-Cu", amount: "50mg" },
+      ],
+      total: "80mg",
+    },
+    applications: [
+      "Peptide signaling pathways",
+      "Extracellular matrix activity",
+      "Tissue remodeling models",
+      "Inflammatory-response pathways",
+      "Cellular repair mechanisms",
+      "Multi-peptide interaction research",
+    ],
+    variants: [{ size: "80mg", price: 129.99 }],
     featured: true,
   },
   {
     handle: "nad-plus",
     name: "NAD+",
     abbr: "NAD",
-    category: "Single Peptides",
-    tagline: "Nicotinamide Adenine Dinucleotide · 100mg",
-    description:
-      "A coenzyme central to redox reactions and cellular metabolism. A staple reference compound in mitochondrial and aging research models.",
-    purity: "99.2%",
-    formula: "C21H27N7O14P2",
-    molWeight: "663.4 g/mol",
-    cas: "53-84-9",
+    category: "Compounds",
+    subtitle: "Premium Research Compound",
+    productType: "Research compound",
+    purity: "99%+",
+    card: "bg-card-sand",
     tone: "#c98a2b",
-    variants: [
-      { size: "100mg", price: 64 },
-      { size: "500mg", price: 240 },
+    image: "/products/nad-plus.png",
+    description:
+      "NAD+ is a naturally occurring coenzyme involved in cellular redox reactions and energy-related signaling pathways. It is studied in laboratory research involving mitochondrial function, metabolic activity, oxidative stress models, and cellular aging pathways.",
+    applications: [
+      "Cellular redox reactions",
+      "Mitochondrial function",
+      "Metabolic activity",
+      "Oxidative stress models",
+      "Energy-related signaling pathways",
+      "Cellular aging pathway research",
     ],
+    variants: [{ size: "500mg", price: 76.0 }],
     featured: true,
-  },
-  {
-    handle: "dsip",
-    name: "DSIP",
-    abbr: "DSIP",
-    category: "Single Peptides",
-    tagline: "Delta Sleep-Inducing Peptide · 5mg",
-    description:
-      "A nonapeptide first isolated from cerebral venous blood. Used as a reference compound in neuropeptide and circadian-model research.",
-    purity: "99.0%",
-    sequence: "Trp-Ala-Gly-Gly-Asp-Ala-Ser-Gly-Glu",
-    formula: "C35H48N10O15",
-    molWeight: "848.8 g/mol",
-    cas: "62568-57-4",
-    tone: "#3b6fb0",
-    variants: [
-      { size: "5mg", price: 44 },
-      { size: "10mg", price: 78 },
-    ],
-  },
-  {
-    handle: "ghk-cu",
-    name: "GHK-Cu",
-    abbr: "GHK",
-    category: "Single Peptides",
-    tagline: "Copper Peptide · 50mg",
-    description:
-      "A naturally occurring copper-binding tripeptide. Frequently referenced in extracellular-matrix and fibroblast laboratory models.",
-    purity: "99.3%",
-    sequence: "Gly-His-Lys · Cu²⁺",
-    formula: "C14H24N6O4·Cu",
-    molWeight: "403.9 g/mol",
-    cas: "89030-95-5",
-    tone: "#2aa39a",
-    variants: [
-      { size: "50mg", price: 52 },
-      { size: "100mg", price: 92 },
-    ],
-  },
-  {
-    handle: "recovery-blend",
-    name: "Recovery Blend",
-    abbr: "RB",
-    category: "Blends",
-    tagline: "BPC-157 + TB-500 · 10mg",
-    description:
-      "A pre-combined research blend pairing BPC-157 and TB-500 in a single lyophilized vial for tissue-model comparative studies.",
-    purity: "99.0%+",
-    tone: "#1f6f5c",
-    variants: [
-      { size: "10mg", price: 96 },
-    ],
-    featured: true,
-  },
-  {
-    handle: "amino-h2o",
-    name: "Amino H₂O",
-    abbr: "H2O",
-    category: "Accessories",
-    tagline: "Bacteriostatic Water · 30mL",
-    description:
-      "Sterile bacteriostatic water (0.9% benzyl alcohol) for laboratory reconstitution of lyophilized research compounds.",
-    purity: "USP grade",
-    tone: "#9aa6b2",
-    variants: [
-      { size: "30mL", price: 14 },
-      { size: "3 × 30mL", price: 36 },
-    ],
   },
 ];
 

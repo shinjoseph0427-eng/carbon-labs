@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Browse Carbon Lab's catalog of identity-tested research peptides, blends, and laboratory accessories. 99%+ purity, COA included.",
 };
 
-const categories = ["All", "Single Peptides", "Blends", "Accessories"] as const;
+const categories = ["All", "Peptides", "Compounds", "Blends"] as const;
 
 export default async function StorePage({
   searchParams,

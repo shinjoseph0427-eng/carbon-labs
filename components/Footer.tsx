@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import Newsletter from "./Newsletter";
 
 export default function Footer() {
@@ -6,14 +7,9 @@ export default function Footer() {
     <footer className="mt-24 border-t bg-surface">
       <div className="container-x grid gap-12 py-16 md:grid-cols-[1.4fr_1fr_1fr]">
         <div>
-          <div className="flex items-center gap-2.5">
-            <span className="grid h-8 w-8 place-items-center rounded-md bg-accent font-display text-sm font-bold text-white">
-              C
-            </span>
-            <span className="font-display text-lg font-semibold tracking-tight">
-              Carbon Lab
-            </span>
-          </div>
+          <Link href="/" className="inline-flex items-center" aria-label="Carbon Labs home">
+            <Image src="/logo.png" alt="Carbon Labs" width={569} height={186} className="h-9 w-auto" />
+          </Link>
           <p className="mt-4 max-w-sm text-sm leading-relaxed text-ink-soft">
             Research-grade peptides with 99%+ identity purity. Third-party
             identity tested, Certificate of Analysis included with every order.
@@ -29,10 +25,10 @@ export default function Footer() {
         <div>
           <p className="eyebrow">Catalog</p>
           <ul className="mt-4 space-y-2.5 text-sm text-ink-soft">
-            <li><Link href="/store" className="hover:text-ink">All peptides</Link></li>
-            <li><Link href="/store?cat=Single+Peptides" className="hover:text-ink">Single peptides</Link></li>
+            <li><Link href="/store" className="hover:text-ink">All products</Link></li>
+            <li><Link href="/store?cat=Peptides" className="hover:text-ink">Peptides</Link></li>
+            <li><Link href="/store?cat=Compounds" className="hover:text-ink">Compounds</Link></li>
             <li><Link href="/store?cat=Blends" className="hover:text-ink">Blends</Link></li>
-            <li><Link href="/store?cat=Accessories" className="hover:text-ink">Accessories</Link></li>
           </ul>
         </div>
 
@@ -42,14 +38,14 @@ export default function Footer() {
             <li><Link href="/faq" className="hover:text-ink">FAQ</Link></li>
             <li><Link href="/shipping" className="hover:text-ink">Shipping</Link></li>
             <li><Link href="/disclaimer" className="hover:text-ink">Disclaimer</Link></li>
-            <li><a href="mailto:support@carbonlab.example" className="hover:text-ink">support@carbonlab</a></li>
+            <li><a href="mailto:support@carbonlabs.example" className="hover:text-ink">support@carbonlabs</a></li>
           </ul>
         </div>
       </div>
 
       <div className="border-t">
         <div className="container-x flex flex-col gap-2 py-6 text-xs text-muted md:flex-row md:items-center md:justify-between">
-          <p>© {new Date().getFullYear()} Carbon Lab. Research use only.</p>
+          <p>© {new Date().getFullYear()} Carbon Labs. Research use only.</p>
           <p>
             Not for human or veterinary use · Not evaluated by the U.S. FDA ·
             Handle by qualified professionals only.

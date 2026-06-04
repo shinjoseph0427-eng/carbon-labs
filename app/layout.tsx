@@ -1,18 +1,20 @@
 import type { Metadata } from "next";
-import { Inter, Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import { Syne, Manrope, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/Header";
+import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import VerificationGate from "@/components/VerificationGate";
 
-const inter = Inter({
+const syne = Syne({
   subsets: ["latin"],
-  variable: "--font-inter",
+  weight: ["400", "600", "700", "800"],
+  variable: "--font-syne",
   display: "swap",
 });
-const space = Space_Grotesk({
+const manrope = Manrope({
   subsets: ["latin"],
-  variable: "--font-space",
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-manrope",
   display: "swap",
 });
 const mono = JetBrains_Mono({
@@ -23,20 +25,21 @@ const mono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Carbon Lab — Research Peptides | 99%+ Identity Purity",
-    template: "%s | Carbon Lab",
+    default: "Carbon Labs — Precision Research Peptides, Certified",
+    template: "%s | Carbon Labs",
   },
   description:
-    "Carbon Lab offers research peptides with 99%+ identity purity. BPC-157, TB-500, Ipamorelin and more. Third-party identity tested, Certificate of Analysis included. For laboratory research use only.",
+    "Research-grade peptides with Certificate of Analysis on every batch. 99%+ identity purity, third-party tested, USA sourced. BPC-157, TB-500, Ipamorelin and more.",
   keywords: [
     "research peptides",
     "buy peptides",
     "BPC-157",
     "TB-500",
     "Ipamorelin",
+    "CJC-1295",
     "99% purity peptides",
     "certificate of analysis",
-    "Carbon Lab",
+    "Carbon Labs",
   ],
 };
 
@@ -48,12 +51,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${inter.variable} ${space.variable} ${mono.variable} h-full antialiased`}
+      className={`${syne.variable} ${manrope.variable} ${mono.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
         <VerificationGate />
-        <Header />
-        <main className="flex-1">{children}</main>
+        <Navbar />
+        <main className="flex-1 pt-16">{children}</main>
         <Footer />
       </body>
     </html>
