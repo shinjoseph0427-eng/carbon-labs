@@ -25,13 +25,13 @@ export default function ProductCard({ product }: { product: Product }) {
             alt={product.name}
             width={300}
             height={420}
-            className="h-[78%] w-auto object-contain transition group-hover:scale-105"
+            className="h-full w-full object-contain p-6 transition group-hover:scale-105"
           />
         ) : (
           <Vial
             abbr={product.abbr}
             tone={product.tone}
-            className="h-44 w-auto transition group-hover:scale-105"
+            className="h-full w-auto object-contain p-6 transition group-hover:scale-105"
           />
         )}
       </Link>
