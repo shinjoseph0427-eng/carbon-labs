@@ -22,36 +22,44 @@ export default function StorePreview() {
       </div>
 
       {/* store body */}
-      <div className="flex-1 overflow-hidden p-4 md:p-6">
-        <div className="flex items-center justify-between">
+      <div className="flex flex-1 flex-col overflow-hidden p-3 md:p-6">
+        <div className="flex items-center justify-between gap-2">
           <div>
             <p className="eyebrow">Catalog</p>
-            <p className="font-display text-lg font-semibold tracking-tight">
+            <p className="font-display text-base font-semibold tracking-tight md:text-lg">
               Research peptide store
             </p>
           </div>
-          <span className="rounded-full border bg-surface px-3 py-1 font-mono text-[0.65rem] text-accent">
+          <span className="hidden rounded-full border bg-surface px-3 py-1 font-mono text-[0.65rem] text-accent sm:inline">
             99%+ identity purity
           </span>
         </div>
 
-        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-3">
+        <div className="mt-3 grid flex-1 grid-cols-3 gap-2 md:mt-4 md:gap-3">
           {tiles.map((p) => (
             <div
               key={p.handle}
               className="flex flex-col overflow-hidden rounded-lg border bg-surface"
             >
-              <div className={`grid h-20 place-items-center ${p.card} md:h-28`}>
+              <div className={`grid flex-1 place-items-center ${p.card} p-1`}>
                 {p.image ? (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={p.image} alt={p.name} className="h-[88%] w-auto object-contain" />
+                  <img
+                    src={p.image}
+                    alt={p.name}
+                    className="h-12 w-auto object-contain md:h-24"
+                  />
                 ) : (
-                  <Vial abbr={p.abbr} tone={p.tone} className="h-16 w-auto md:h-24" />
+                  <Vial abbr={p.abbr} tone={p.tone} className="h-12 w-auto md:h-24" />
                 )}
               </div>
-              <div className="px-3 py-2">
-                <p className="truncate text-xs font-semibold">{p.name}</p>
-                <p className="text-[0.7rem] text-muted">from ${fromPrice(p)}</p>
+              <div className="px-2 py-1.5 md:px-3 md:py-2">
+                <p className="truncate text-[0.7rem] font-semibold md:text-xs">
+                  {p.name}
+                </p>
+                <p className="text-[0.65rem] text-muted md:text-[0.7rem]">
+                  ${fromPrice(p)}
+                </p>
               </div>
             </div>
           ))}

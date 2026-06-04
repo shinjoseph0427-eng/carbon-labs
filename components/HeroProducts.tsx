@@ -6,20 +6,23 @@ import Link from "next/link";
 const VIALS = [
   {
     src: "/products/glutathione.png",
-    alt: "Carbon Labs Glutathione 1500mg vial",
-    cls: "absolute bottom-0 left-1/2 z-20 h-[230px] -translate-x-[112%] rotate-[-13deg] translate-y-4 md:h-[420px]",
+    alt: "Carbon Labs Glutathione vial",
+    wrap: "z-20 -mr-5 sm:-mr-7 md:-mr-12",
+    img: "h-40 origin-bottom -rotate-[10deg] sm:h-56 md:h-[400px]",
     floatDelay: 0,
   },
   {
     src: "/products/igf-1-lr3.png",
-    alt: "Carbon Labs IGF-1 LR3 1mg vial",
-    cls: "relative z-30 h-[300px] md:h-[520px]",
+    alt: "Carbon Labs IGF-1 LR3 vial",
+    wrap: "z-30",
+    img: "h-52 sm:h-72 md:h-[520px]",
     floatDelay: 0.6,
   },
   {
     src: "/products/glp-3rt.png",
-    alt: "Carbon Labs GLP-3RT 10mg vial",
-    cls: "absolute bottom-0 left-1/2 z-20 h-[230px] translate-x-[12%] rotate-[13deg] translate-y-4 md:h-[420px]",
+    alt: "Carbon Labs GLP-3RT vial",
+    wrap: "z-20 -ml-5 sm:-ml-7 md:-ml-12",
+    img: "h-40 origin-bottom rotate-[10deg] sm:h-56 md:h-[400px]",
     floatDelay: 1.2,
   },
 ];
@@ -74,18 +77,18 @@ export default function HeroProducts() {
         variants={stage}
         initial="hidden"
         animate="visible"
-        className="relative flex h-[330px] w-full max-w-3xl items-end justify-center md:h-[560px]"
+        className="relative flex w-full max-w-3xl items-end justify-center"
       >
         {/* ground shadow */}
-        <div className="absolute bottom-6 left-1/2 h-8 w-[60%] -translate-x-1/2 rounded-[50%] bg-black/10 blur-2xl" />
+        <div className="absolute -bottom-2 left-1/2 h-6 w-[62%] -translate-x-1/2 rounded-[50%] bg-black/10 blur-2xl" />
 
         {VIALS.map((v) => (
-          <motion.div key={v.src} variants={vialReveal} className={v.cls}>
+          <motion.div key={v.src} variants={vialReveal} className={`relative ${v.wrap}`}>
             <motion.img
               src={v.src}
               alt={v.alt}
               animate={float(v.floatDelay)}
-              className="h-full w-auto object-contain drop-shadow-2xl"
+              className={`${v.img} w-auto object-contain drop-shadow-2xl`}
               draggable={false}
               onError={(e) => {
                 const t = e.currentTarget;
@@ -107,7 +110,7 @@ export default function HeroProducts() {
         <motion.h1
           variants={textUp}
           custom={1.0}
-          className="font-display text-5xl font-extrabold leading-[1.05] tracking-tight text-black md:text-7xl"
+          className="font-display text-4xl font-extrabold leading-[1.05] tracking-tight text-black sm:text-5xl md:text-7xl"
         >
           Precision peptides,
           <br />
